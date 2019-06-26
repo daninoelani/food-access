@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input, Jumbotron, Container } from 'reactstrap';
 import styled from 'styled-components'
 
 const LocationPage = styled.div`
@@ -8,11 +8,23 @@ const LocationPage = styled.div`
   margin-right: auto
 `
 
+const hStyle = {
+  fontSize: '300%',
+  fontWeight: 'bold',
+}
+
 export default () => {
 
   return (
     <LocationPage>
-      <h1>Where are you?</h1>
+      <Jumbotron fluid>
+        <Container fluid>
+          <h3 className="display-3" style={hStyle}>Where are you?</h3>
+        </Container>
+      </Jumbotron>
+      <br />
+      <Button color="secondary" size="lg" block>Use My Current Location</Button>
+      <br />
       <Form>
       <FormGroup>
         <Label for="exampleAddress">Address</Label>

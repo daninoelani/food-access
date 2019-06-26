@@ -11,7 +11,7 @@ const HomePage = styled.div`
 `
 
 const hStyle = {
-  fontSize: '200%',
+  fontSize: '300%',
   fontWeight: 'bold',
 }
 
