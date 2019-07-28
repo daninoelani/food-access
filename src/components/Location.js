@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Col, Row, Button, Form, FormGroup, Label, Input, Jumbotron, Container } from 'reactstrap';
 import styled from 'styled-components'
 
@@ -14,6 +14,23 @@ const hStyle = {
 }
 
 export default () => {
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [zip, setZip] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const data = JSON.stringify({address, city, state, zip})
+    await fetch('http://localhost:4000/', {
+      method: 'POST',
+      body: data,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    console.log(data)
+  }
 
   const handleClick = () => {
     navigator.geolocation.getCurrentPosition(position => console.log(position));
@@ -29,26 +46,22 @@ export default () => {
       <br />
       <Button color="secondary" size="lg" block onClick={e => handleClick(e)}>Use My Current Location</Button>
       <br />
-      <Form>
+      <Form onSubmit={e => handleSubmit(e)}>
         <FormGroup>
           <Label for="exampleAddress">Address</Label>
-          <Input type="text" name="address" id="exampleAddress" placeholder="1234 Main St" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleAddress2">Address 2</Label>
-          <Input type="text" name="address2" id="exampleAddress2" placeholder="Apartment" />
+          <Input type="text" name="address" id="exampleAddress" placeholder="1234 Main St" value={address} onChange={e => setAddress(e.target.value)}/>
         </FormGroup>
         <Row form>
           <Col md={6}>
             <FormGroup>
               <Label for="exampleCity">City</Label>
-              <Input type="text" name="city" id="exampleCity" />
+              <Input type="text" name="city" id="exampleCity" value={city} onChange={e => setCity(e.target.value)} />
             </FormGroup>
           </Col>
           <Col md={4}>
             <FormGroup>
               <Label for="exampleSelect">State</Label>
-              <Input type="select" name="select" id="exampleSelect">
+              <Input type="select" name="select" id="exampleSelect" value={state} onChange={e => setState(e.target.value)}>
                 <option>AL</option>
                 <option>AK</option>
                 <option>AZ</option>
@@ -105,7 +118,7 @@ export default () => {
           <Col md={2}>
             <FormGroup>
               <Label for="exampleZip">Zip</Label>
-              <Input type="text" name="zip" id="exampleZip" />
+              <Input type="text" name="zip" id="exampleZip" value={zip} onChange={e => setZip(e.target.value)} />
             </FormGroup>
           </Col>
         </Row>

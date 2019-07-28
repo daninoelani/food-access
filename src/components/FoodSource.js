@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Link } from "@reach/router";
 
 
-const HomePage = styled.div`
+const FoodSource = styled.div`
   max-width: 500px;
   margin-left: auto;
   margin-right: auto
@@ -22,18 +22,20 @@ const pStyle = {
 export default () => {
 
   return (
-    <HomePage>
+    <FoodSource>
       <Jumbotron fluid>
         <Container fluid>
-          <h3 className="display-3" style={hStyle}>What do you Need?</h3>
+          <h3 className="display-3" style={hStyle}>What are you looking for?</h3>
           <p className="lead" style={pStyle}>Click a button below to find the nearest location that is currently open.</p>
         </Container>
       </Jumbotron>
-      <Link to="/location"><Button color="info" size="lg" block>Find a Store that Accepts My Benefits</Button></Link>
+      <Link to="/location"><Button color="info" size="lg" block>Soup Kitchen</Button></Link>
       <br />
-      <Link to="/foodsource"><Button color="info" size="lg" block>Find Emergency Food</Button></Link>
+      <Link to="/location"><Button color="info" size="lg" block>Food Pantry</Button></Link>
       <br />
-      <Link to="/location"><Button color="info" size="lg" block>Renew My Benefits</Button></Link>
-    </HomePage>
+      <Link to="/location"><Button color="info" size="lg" block>Meals on Wheels Service</Button></Link>
+      <br />
+      <Link to="/location"><Button color="info" size="lg" block>Other</Button></Link>
+    </FoodSource>
   )
 }
